@@ -36,7 +36,7 @@ const (
 	VnCaseNoChange
 )
 const (
-	HomePage           = "https://github.com/BambooEngine/ibus-bamboo"
+	HomePage           = "https://github.com/LotusInputEngine/ibus-lotus/"
 	CharsetConvertPage = "https://tools.jcisio.com/vietuni/"
 
 	DataDir          = "/usr/share/ibus-bamboo"

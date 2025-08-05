@@ -3,9 +3,9 @@
 IBus Lotus - Bộ gõ tiếng Việt cho Linux
 ===================================
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://opensource.org/licenses/GPL-3.0)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/BambooEngine/ibus-bamboo)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/LotusInputEngine/ibus-lotus/)
 
-Ibus Lotus là bản fork của [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo). Vì một số lý do mà ibus-bamboo không thể tiếp tục phát triển nữa, bộ gõ này ra đời với mục đích kế thừa và tiếp tục phát triển. Quản lý bởi [hien-ngo29](github.com/hien-ngo29).
+Ibus Lotus là bản fork của [ibus-bamboo](https://github.com/LotusInputEngine/ibus-lotus/). Vì một số lý do mà ibus-bamboo không thể tiếp tục phát triển nữa, bộ gõ này ra đời với mục đích kế thừa và tiếp tục phát triển. Quản lý bởi [hien-ngo29](github.com/hien-ngo29).
 
 ## Installation
 Vì một số lý do mà mình không thể kham nổi việc publish bản release cho từng distro của Linux nên nếu các bạn cài đặt hãy download source code của repo này và build [theo hướng dẫn này](docs/building_instructions.md).
@@ -15,6 +15,6 @@ Tuy bộ gõ được fork từ ibus-bamboo và đổi tên thành ibus-lotus nh
 
 ## Xin cám ơn các contributor của IBus Bamboo <3
 
-<a href="https://github.com/BambooEngine/ibus-bamboo/graphs/contributors">
+<a href="https://github.com/LotusInputEngine/ibus-lotus//graphs/contributors">
   <img src="https://contrib.rocks/image?repo=BambooEngine/ibus-bamboo" />
 </a>

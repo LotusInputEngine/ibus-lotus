@@ -25,7 +25,7 @@
     <version>0.8.4</version>
     <author>Luong Thanh Lam &lt;ltlam93@gmail.com&gt;</author>
     <license>GPLv3</license>
-    <homepage>https://github.com/BambooEngine/ibus-bamboo/</homepage>
+    <homepage>https://github.com/LotusInputEngine/ibus-lotus//</homepage>
     <textdomain>ibus-bamboo</textdomain>
     <engines>
           <engine>
