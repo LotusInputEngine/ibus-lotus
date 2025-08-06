@@ -20,6 +20,7 @@ case $(uname) in
 		cp -f ${ibus_e_name} ${DESTDIR}${PREFIX}/lib/ibus-${engine_name}/
 		cp -f data/${engine_name}.xml ${DESTDIR}${ibus_dir}/component/
 		cp -f data/${engine_gui_name} ${DESTDIR}${PREFIX}/share/applications/
+		echo "Ibus Lotus successfully installed!"
 		;;
 	"FreeBSD") mkdir -p ${DESTDIR}${engine_dir} \
 		${DESTDIR}${PREFIX}/lib/ibus-${engine_name} \
