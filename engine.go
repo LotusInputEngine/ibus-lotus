@@ -93,6 +93,10 @@ Return:
 This function gets called whenever a key is pressed.
 */
 func (e *IBusBambooEngine) ProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) (bool, *dbus.Error) {
+	if state&IBusDefaultModMask != 0 { // Prevent messing up with key shortcuts
+		return false, nil
+	}
+
 	if state&IBusReleaseMask != 0 {
 		// fmt.Println("Ignore key-up event")
 		return false, nil
