@@ -93,7 +93,7 @@ Return:
 This function gets called whenever a key is pressed.
 */
 func (e *IBusBambooEngine) ProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) (bool, *dbus.Error) {
-	if state&IBusDefaultModMask != 0 { // Prevent messing up with key shortcuts
+	if !isValidState(state) {
 		return false, nil
 	}
 
