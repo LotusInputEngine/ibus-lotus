@@ -1,10 +1,21 @@
 package main
 
 import (
+	"os/exec"
+	"strings"
+
 	"github.com/godbus/dbus/v5"
 )
 
-var wlAppId string
+func wlGetFocusWindowClass() (string, error) {
+	if isGnome {
+		return gnomeGetFocusWindowClass()
+	}
+	if isKDE {
+		return kdeGetFocusWindowClass()
+	}
+	return "", nil
+}
 
 func gnomeGetFocusWindowClass() (string, error) {
 	// Install Window Call Extended extension to make this work
@@ -32,9 +43,19 @@ func gnomeGetFocusWindowClass() (string, error) {
 	return className, nil
 }
 
-func wlGetFocusWindowClass() (string, error) {
-	if isGnome {
-		return gnomeGetFocusWindowClass()
+func kdeGetFocusWindowClass() (string, error) {
+	var getActiveWindowCmd = exec.Command("kdotool", "getactivewindow")
+
+	windowActiveId, err := getActiveWindowCmd.Output()
+	if err != nil {
+		return "", err
 	}
-	return "", nil
+
+	var getWindowClassnameCmd = exec.Command("kdotool", "getwindowclassname", strings.TrimSpace(string(windowActiveId)))
+	windowClassname, err := getWindowClassnameCmd.Output()
+	if err != nil {
+		return "", err
+	}
+
+	return string(windowClassname), nil
 }
