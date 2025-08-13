@@ -26,7 +26,7 @@ import (
 	"os"
 	"strings"
 
-	ibus "github.com/BambooEngine/goibus"
+	ibus "github.com/LotusInputEngine/goibus"
 )
 
 const (

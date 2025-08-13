@@ -23,7 +23,7 @@ import (
 	"strconv"
 
 	"github.com/BambooEngine/bamboo-core"
-	ibus "github.com/BambooEngine/goibus"
+	ibus "github.com/LotusInputEngine/goibus"
 )
 
 const EmojiMaxPageSize = 9

@@ -26,7 +26,7 @@ import (
 	"strconv"
 
 	"github.com/BambooEngine/bamboo-core"
-	ibus "github.com/BambooEngine/goibus"
+	ibus "github.com/LotusInputEngine/goibus"
 )
 
 func (e *IBusBambooEngine) hexadecimalProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) bool {
