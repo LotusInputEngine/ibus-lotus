@@ -28,7 +28,7 @@ import (
 	"sync"
 
 	"github.com/BambooEngine/bamboo-core"
-	ibus "github.com/BambooEngine/goibus"
+	ibus "github.com/LotusInputEngine/goibus"
 	"github.com/godbus/dbus/v5"
 
 	"ibus-bamboo/config"

@@ -33,7 +33,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/BambooEngine/bamboo-core"
-	ibus "github.com/BambooEngine/goibus"
+	ibus "github.com/LotusInputEngine/goibus"
 	"github.com/godbus/dbus/v5"
 )
 
@@ -302,13 +302,20 @@ func (e *IBusBambooEngine) openLookupTable() {
 			lt.AppendLabel(strconv.Itoa(im))
 		}
 		if im == config.UsIM {
-			lt.AppendCandidate(config.ImLookupTable[im] + " (" + wmClass + ")")
+			lt.AppendCandidate(config.ImLookupTable[im] + " (" + formatWmClassToSingleAppName(wmClass) + ")")
 		} else {
 			lt.AppendCandidate(config.ImLookupTable[im])
 		}
 	}
 	e.inputModeLookupTable = lt
 	e.UpdateLookupTable(lt, true)
+}
+
+func formatWmClassToSingleAppName(wmClass string) string {
+	var parts = strings.Split(wmClass, ".")
+	var appName = parts[len(parts)-1]
+	appName = strings.ToUpper(string(appName[0])) + appName[1:]
+	return appName
 }
 
 func (e *IBusBambooEngine) ltProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) (bool, bool) {
@@ -548,14 +555,17 @@ func (e *IBusBambooEngine) getWmClass() string {
 
 func (e *IBusBambooEngine) getLatestWmClass() string {
 	var wmClass string
-	if isGnome {
-		wmClass, _ = gnomeGetFocusWindowClass()
-	} else if isWayland {
-		wmClass = wlAppId
+
+	if isWayland {
+		wmClass, _ = wlGetFocusWindowClass()
 	}
+	/* The user may use XWayland but `isWayland` is still true and
+	unable to get the focused window class, so we do this instead of
+	using if else in any case of being failed to get focused window */
 	if wmClass == "" {
 		wmClass = x11GetFocusWindowClass()
 	}
+
 	wmClass = strings.Replace(wmClass, "\"", "", -1)
 	return wmClass
 }

@@ -26,7 +26,7 @@ import (
 	"os"
 	"strings"
 
-	ibus "github.com/BambooEngine/goibus"
+	ibus "github.com/LotusInputEngine/goibus"
 )
 
 const (
@@ -39,6 +39,7 @@ var version = flag.Bool("version", false, "Show version")
 var gui = flag.Bool("gui", false, "Show GUI")
 var isWayland = false
 var isGnome = false
+var isKDE = false
 
 func hasGnome(env string) bool {
 	return strings.Contains(strings.ToLower(os.Getenv(env)), "gnome")
@@ -51,12 +52,12 @@ func main() {
 	if hasGnome("XDG_CURRENT_DESKTOP") || hasGnome("DESKTOP_SESSION") || hasGnome("GDMSESSION") {
 		isGnome = true
 	}
+	if strings.ToLower(os.Getenv("XDG_CURRENT_DESKTOP")) == "kde" {
+		isKDE = true
+	}
 	flag.Parse()
 	if *embedded {
 		os.Chdir(DataDir)
-	}
-	if isWayland && !isGnome {
-		go wlGetFocusWindowClass()
 	}
 	if *version {
 		fmt.Println(Version)

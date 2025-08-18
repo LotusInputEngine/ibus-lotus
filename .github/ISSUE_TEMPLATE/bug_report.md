@@ -30,7 +30,7 @@ Nếu cần thiết, hãy [đính kèm hình ảnh](https://help.github.com/arti
  - OS và version: (ví dụ: Ubuntu 20.04)
  - Desktop: (Xfce, KDE, Gnome,... hoặc **mặc định**)
  - Protocol: (Wayland hay Xorg/X11)
- - Phiên bản ibus-bamboo: (bản mới nhất là 1.0.1)
+ - Phiên bản ibus-bamboo: (bản mới nhất là 1.0.2)
 
 **Thông tin thêm**
 <!--
