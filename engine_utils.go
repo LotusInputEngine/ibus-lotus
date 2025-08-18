@@ -302,13 +302,20 @@ func (e *IBusBambooEngine) openLookupTable() {
 			lt.AppendLabel(strconv.Itoa(im))
 		}
 		if im == config.UsIM {
-			lt.AppendCandidate(config.ImLookupTable[im] + " (" + wmClass + ")")
+			lt.AppendCandidate(config.ImLookupTable[im] + " (" + formatWmClassToSingleAppName(wmClass) + ")")
 		} else {
 			lt.AppendCandidate(config.ImLookupTable[im])
 		}
 	}
 	e.inputModeLookupTable = lt
 	e.UpdateLookupTable(lt, true)
+}
+
+func formatWmClassToSingleAppName(wmClass string) string {
+	var parts = strings.Split(wmClass, ".")
+	var appName = parts[len(parts)-1]
+	appName = strings.ToUpper(string(appName[0])) + appName[1:]
+	return appName
 }
 
 func (e *IBusBambooEngine) ltProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) (bool, bool) {
