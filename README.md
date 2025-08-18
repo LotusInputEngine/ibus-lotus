@@ -40,14 +40,21 @@ cd ibus-lotus-<version>
 chmod +x ./install
 sudo ./install
 ```
+Có thể bạn sẽ cần phải log out ra session của Desktop Environment bạn đang dùng và đăng nhập lại để ibus-lotus/ibus-bamboo xuất hiện trên Input Source trong Settings.
 
-4. Chạy ibus
-```
-ibus start
-```
+4. Thêm Input Source tại Settings của Desktop Environment bạn đang dùng. Bạn sẽ thấy một input source mang tên `Vietnamese (Bamboo)` tại phần Vietnamese (các bạn có thể Google cách thêm Input Source cho Desktop Environment bạn đang dùng).
 
+### Cài từ source code
+Xem hướng dẫn [build từ source](./docs/building_instructions.md).
 
-Các bạn có thể cân nhắc [build từ source]((docs/building_instructions.md)).
+### Note cho Wayland
+Hãy cài những thứ này để tránh việc không mở được bảng chọn chế độ gõ trên Wayland.
+
+**GNOME**: cài đặt extension [Window Call Extended](https://extensions.gnome.org/extension/4974/window-calls-extended/)
+
+**KDE Plasma**: cài đặt `kdotool` từ package manager của distro.
+
+**Nếu có thắc mắc hay trục trặc về việc cài đặt ibus-lotus hãy thoải mái [mở issue](https://github.com/LotusInputEngine/ibus-lotus/issues/new) trên repo này**
 
 ## Notes
 Tuy bộ gõ được fork từ ibus-bamboo và đổi tên thành ibus-lotus nhưng một số đoạn code và script trong bộ gõ vẫn lấy tên ibus-bamboo. Rất tiếc đó là mình khá lười và không mấy hứng thú khi phải nghiên cứu lại hết code chỉ để đổi lại tên. Mình nghĩ sẽ tốt hơn nếu để lại phần việc này cho những thành viên của cộng đồng mã nguồn mở như các bạn. Nếu được hãy fork giúp mình và làm phần việc đó rồi mở Pull Request tại repo này nha <3.
