@@ -57,7 +57,7 @@ Hãy cài những thứ này để tránh việc không mở được bảng ch�
 **Nếu có thắc mắc hay trục trặc về việc cài đặt ibus-lotus hãy thoải mái [mở issue](https://github.com/LotusInputEngine/ibus-lotus/issues/new) trên repo này**
 
 ## Notes
-Tuy bộ gõ được fork từ ibus-bamboo và đổi tên thành ibus-lotus nhưng một số đoạn code và script trong bộ gõ vẫn lấy tên ibus-bamboo. Rất tiếc đó là mình khá lười và không mấy hứng thú khi phải nghiên cứu lại hết code chỉ để đổi lại tên. Mình nghĩ sẽ tốt hơn nếu để lại phần việc này cho những thành viên của cộng đồng mã nguồn mở như các bạn. Nếu được hãy fork giúp mình và làm phần việc đó rồi mở Pull Request tại repo này nha <3.
+Tuy bộ gõ được fork từ -bamboo và đổi tên thành ibus-lotus nhưng một số đoạn code và script trong bộ gõ vẫn lấy tên ibus-bamboo. Rất tiếc đó là mình khá lười và không mấy hứng thú khi phải nghiên cứu lại hết code chỉ để đổi lại tên. Mình nghĩ sẽ tốt hơn nếu để lại phần việc này cho những thành viên của cộng đồng mã nguồn mở như các bạn. Nếu được hãy fork giúp mình và làm phần việc đó rồi mở Pull Request tại repo này nha <3.
 
 ## Xin cám ơn các contributor của IBus Bamboo <3
 
