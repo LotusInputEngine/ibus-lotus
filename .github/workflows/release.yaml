@@ -1,6 +1,11 @@
 name: Release ibus-bamboo
 run-name: ${{ github.actor }} is triggering on GitHub Actions 🚀
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+
 jobs:
   Build-test-freebsd:
     runs-on: ubuntu-latest
