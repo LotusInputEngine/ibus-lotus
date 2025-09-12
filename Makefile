@@ -16,8 +16,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-CC=cc
-SHELL=sh
+CC?=cc
+SHELL?=sh
+PREFIX?=/usr/local
 
 engine_name=bamboo
 engine_gui_name=ibus-setup-Bamboo.desktop
