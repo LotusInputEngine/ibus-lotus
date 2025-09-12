@@ -18,7 +18,7 @@
 
 CC?=cc
 SHELL?=sh
-PREFIX?=/usr/local
+PREFIX?=/usr
 
 engine_name=bamboo
 engine_gui_name=ibus-setup-Bamboo.desktop
