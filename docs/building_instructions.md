@@ -52,7 +52,7 @@ git clone https://github.com/LotusInputEngine/ibus-lotus.git
 **Linux**
 ```bash
 cd ibus-lotus
-sudo make install PREFIX=/usr
+sudo make install
 
 # Restart ibus
 ibus restart
