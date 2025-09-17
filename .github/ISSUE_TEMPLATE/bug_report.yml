@@ -1,0 +1,74 @@
+name: Báo lỗi
+description: |
+  Vui lòng thông báo lỗi tại đây
+body:
+  - type: input
+    id: distro
+    attributes:
+      label: Distro
+      description: Distro của hệ điều hành mà bạn đang dùng cùng với phiên bản
+      placeholder: Ubuntu 24
+    validations:
+      required: false
+  - type: input
+    id: desktop
+    attributes:
+      label: Desktop Environment và phiên bản đang sử dụng
+      description: |
+        Kiểm tra với lệnh `echo $XDG_CURRENT_DESKTOP` hoặc các công cụ khác như `neofetch`/`fastfetch`
+      placeholder: GNOME 48
+    validations:
+      required: false
+  - type: dropdown
+    id: session
+    attributes:
+      label: Display protocol
+      description: Bạn đang dùng Wayland hay X11? Kiểm tra với lệnh `echo $XDG_SESSION_TYPE`
+      options:
+        - Wayland
+        - X11
+      default: 0
+    validations:
+      required: false
+  - type: input
+    id: application
+    attributes:
+      label: Phần mềm/ứng dụng sử dụng và phiên bản
+      description: Ứng dụng và phiên bản nào bạn sử dụng bị gặp vấn đề trên?
+      placeholder: Brave v1.82.166, Chromium 140.0.7339.133, Firefox 142.0.1,...
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Phiên bản ibus-lotus đang sử dụng
+      description: Bạn có thể kiểm tra tại bảng tùy chọn của ibus-lotus
+      placeholder: 1.0.2
+    validations:
+      required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: Mô tả lỗi
+      description: Mô tả ngắn gọn lỗi của bạn
+    validations:
+      required: true
+  - type: textarea
+    id: reproducing
+    attributes:
+      label: Các bước tái hiện lỗi
+      value: |
+        1. 
+        2. 
+        3. 
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: |
+        Note
+      description: Một số lưu ý nào đó. Ví dụ khi bạn làm gì đó thì lỗi sẽ hết xảy ra (Optional)
+    validations:
+      required: false
