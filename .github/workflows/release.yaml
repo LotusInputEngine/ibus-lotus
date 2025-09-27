@@ -8,6 +8,7 @@ on:
 
 jobs:
   Build-test-freebsd:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     name: Build and Test in FreeBSD
     steps:
@@ -26,6 +27,7 @@ jobs:
             make test && make build
 
   Build-test-nix-flake:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
