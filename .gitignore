@@ -15,6 +15,7 @@ xtest
 .vim/
 .git/
 .idea/
+.vscode/
 .ccls-cache/
 test-data/
 src/*/.git
