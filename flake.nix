@@ -1,5 +1,5 @@
 {
-  description = "A flake for ibus-bamboo";
+  description = "A flake for ibus-lotus";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -7,7 +7,7 @@
 
   outputs = { self, nixpkgs }:
     let
-      version = "v0.8.4";
+      version = "v1.0.2";
 
       supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
 
@@ -22,7 +22,7 @@
         in
         {
           default = pkgs.stdenv.mkDerivation {
-            pname = "ibus-bamboo";
+            pname = "ibus-lotus";
             inherit version;
 
             src = ./.;
