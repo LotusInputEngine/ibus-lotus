@@ -36,8 +36,13 @@ tar_file=$(pkg_name)-$(version).tar.gz
 rpm_src_tar=$(rpm_src_dir)/$(tar_file)
 tar_options_src=--transform "s/^\./$(pkg_name)-$(version)/" --exclude=.git --exclude="*.tar.gz" .
 
-all: build
+all: build archive
 
+archive:
+	cp scripts/prebuilt-install ./install
+	tar -zcf "ibus-lotus-${version}.tar.gz" data icons ibus-engine-bamboo ./install
+	rm ./install
+	
 build:
 	$(SHELL) scripts/build
 
