@@ -151,6 +151,18 @@ func isValidCharset(str string) bool {
 	return false
 }
 
+func getLastWordFromSentence(sentence string) string {
+	trimmedSentence := strings.TrimSpace(sentence)
+
+	if trimmedSentence == "" {
+		return ""
+	}
+
+	words := strings.Fields(trimmedSentence)
+
+	return words[len(words)-1]
+}
+
 type byString []string
 
 func (s byString) Less(i, j int) bool {

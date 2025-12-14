@@ -62,6 +62,7 @@ type IBusBambooEngine struct {
 	shouldRestoreKeyStrokes bool
 	// enqueue key strokes to process later
 	shouldEnqueuKeyStrokes bool
+	currentWordNearCursor  string
 }
 
 func NewIbusBambooEngine(name string, cfg *config.Config, base IEngine, preeditor bamboo.IEngine) *IBusBambooEngine {
@@ -158,6 +159,10 @@ func (e *IBusBambooEngine) Disable() *dbus.Error {
 
 // @method(in_signature="vuu")
 func (e *IBusBambooEngine) SetSurroundingText(text dbus.Variant, cursorPos uint32, anchorPos uint32) *dbus.Error {
+	var str = reflect.ValueOf(reflect.ValueOf(text.Value()).Index(2).Interface()).String()
+	e.currentWordNearCursor = getLastWordFromSentence(str)
+	fmt.Println("Current word: ", e.currentWordNearCursor)
+
 	if !e.isSurroundingTextReady {
 		//fmt.Println("Surrounding Text is not ready yet.")
 		return nil
@@ -171,7 +176,6 @@ func (e *IBusBambooEngine) SetSurroundingText(text dbus.Variant, cursorPos uint3
 		}
 	}()
 	if e.inBackspaceWhiteList() {
-		var str = reflect.ValueOf(reflect.ValueOf(text.Value()).Index(2).Interface()).String()
 		var s = []rune(str)
 		if len(s) < int(cursorPos) {
 			return nil
