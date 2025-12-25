@@ -512,18 +512,6 @@ func (e *IBusBambooEngine) getMacroText() (bool, string) {
 	return false, ""
 }
 
-func (e *IBusBambooEngine) getFakeBackspace() int32 {
-	return atomic.LoadInt32(&e.nFakeBackSpace)
-}
-
-func (e *IBusBambooEngine) setFakeBackspace(n int32) {
-	atomic.StoreInt32(&e.nFakeBackSpace, n)
-}
-
-func (e *IBusBambooEngine) addFakeBackspace(n int32) {
-	atomic.AddInt32(&e.nFakeBackSpace, n)
-}
-
 func (e *IBusBambooEngine) isValidKeyVal(keyVal uint32) bool {
 	var keyRune = rune(keyVal)
 	if keyVal == IBusBackSpace || bamboo.IsWordBreakSymbol(keyRune) {
