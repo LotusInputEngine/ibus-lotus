@@ -26,7 +26,11 @@ Ibus Lotus là bản fork của [ibus-bamboo](https://github.com/BambooEngine/ib
 * Khác với ibus-bamboo, ibus-lotus hiện tại đã hỗ trợ Wayland khá tốt trên 2 Desktop Environment chính đó là GNOME và KDE (Plasma). Chỉ cần yêu cầu các bạn cài một số extension và tool bên thứ ba (Xem hướng dẫn cài đặt bên dưới).
 
 ## Installation
-Note: vì một số lý do mà mình không kham nổi việc publish ibus-lotus cho các kho package manager của từng distro nên hiện tại các bạn chỉ có 2 lựa chọn để install đó là cài từ phiên bản prebuilt hoặc build từ source
+Note: vì một số lý do mà mình không kham nổi việc publish ibus-lotus cho các kho package manager của từng distro nên hiện tại các bạn chỉ có 2 lựa chọn để install đó là cài từ phiên bản prebuilt hoặc build từ source (Hoặc AUR nếu bạn dùng Arch)
+
+### Arch Linux [![AUR version](https://img.shields.io/aur/version/ibus-lotus)](https://aur.archlinux.org/packages/ibus-lotus)
+
+ibus-lotus đã có mặt tại AUR do [shadichy](https://github.com/shadichy) là maintainer.
 
 ### Cài từ prebuilt
 1. ibus-lotus/ibus-bamboo sử dụng IME ibus. Hãy nhớ rõ và chắc rằng bạn đã setup ibus đúng cách. Trên hầu hết các Distro và Desktop Environment thông dụng ibus thường đã được cài sẵn nên bạn có thể bỏ qua bước này.
