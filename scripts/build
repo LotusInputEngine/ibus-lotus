@@ -11,13 +11,13 @@ CGO_LDFLAGS_FREEBSD="-L/usr/local/lib -lX11 -lXtst -pthread"
 
 case $(uname) in
 	"Linux") CGO_ENABLED=1 \
-		go build -o ${ibus_e_name} -ldflags "${LDFLAGS}" -mod=vendor
+		go build -o ${ibus_e_name} -ldflags "${LDFLAGS}"
 		;;
 
 	"FreeBSD") CGO_ENABLED=1 \
 		CGO_CFLAGS=${CGO_CFLAGS_FREEBSD} \
 		CGO_LDFLAGS=${CGO_LDFLAGS_FREEBSD} \
-		go build -o ${ibus_e_name} -ldflags "${LDFLAGS}" -mod=vendor
+		go build -o ${ibus_e_name} -ldflags "${LDFLAGS}"
 		;;
 	*) echo "Hiện tại chưa hỗ trợ hệ điều hành này!"
 		;;
