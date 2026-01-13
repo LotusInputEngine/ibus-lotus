@@ -63,7 +63,6 @@ Hãy cài những thứ này để tránh việc không mở được bảng ch�
 ## TODO
 > Một số thứ mà mình chưa thể làm được vì trục trặc vấn đề. Các bạn có thể giúp mình bằng một PR có ích :)
 - [ ] Đổi tên core của dự án từ Bamboo thành Lotus (Riêng thư viện bamboo-core giữ lại đúng tên)
-- [ ] Sửa lại vấn đề build cho FreeBSD trên Github Action (Mình đã thử cập nhật thư viện nhưng lại sinh thêm đống lỗi vặt mà mình ko biết làm thế nào, các bạn giúp mình nhé ✈️)
 
 ## Xin cám ơn các contributor của IBus Bamboo <3
 
