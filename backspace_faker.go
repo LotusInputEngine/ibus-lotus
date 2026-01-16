@@ -11,12 +11,12 @@ const BACKSPACE_INTERVAL = 0
 
 var fakeBackspaceCount = 0
 
-func (e *IBusBambooEngine) SendBackSpace(n int) {
+func (e *IBusLotusEngine) SendBackSpace(n int) {
 	fakeBackspaceCount = n
 	e.SendBackspaceFromInputMode()
 }
 
-func (e *IBusBambooEngine) SendBackspaceFromInputMode() {
+func (e *IBusLotusEngine) SendBackspaceFromInputMode() {
 	switch e.getInputMode() {
 	case config.XTestFakeKeyEventIM:
 		e.SendBackspaceXTest()
@@ -33,14 +33,14 @@ func (e *IBusBambooEngine) SendBackspaceFromInputMode() {
 	}
 }
 
-func (e *IBusBambooEngine) SendBackspaceInSurroundingTextMode() {
+func (e *IBusLotusEngine) SendBackspaceInSurroundingTextMode() {
 	time.Sleep(20 * time.Millisecond)
 	log.Printf("Sendding %d backspace via SurroundingText\n", fakeBackspaceCount)
 	e.DeleteSurroundingText(-int32(fakeBackspaceCount), uint32(fakeBackspaceCount))
 	time.Sleep(20 * time.Millisecond)
 }
 
-func (e *IBusBambooEngine) SendBackspaceXTest() {
+func (e *IBusLotusEngine) SendBackspaceXTest() {
 	var sleep = func() {
 		var count = 0
 		for fakeBackspaceCount > 0 && count < 10 {
@@ -54,7 +54,7 @@ func (e *IBusBambooEngine) SendBackspaceXTest() {
 	sleep()
 }
 
-func (e *IBusBambooEngine) SendBackspaceForwardAsCommitMode() {
+func (e *IBusLotusEngine) SendBackspaceForwardAsCommitMode() {
 	time.Sleep(20 * time.Millisecond)
 	log.Printf("Sendding %d backspace via forwardAsCommitIM\n", fakeBackspaceCount)
 	for i := 0; i < fakeBackspaceCount; i++ {
@@ -64,7 +64,7 @@ func (e *IBusBambooEngine) SendBackspaceForwardAsCommitMode() {
 	time.Sleep(time.Duration(fakeBackspaceCount) * (20 + BACKSPACE_INTERVAL) * time.Millisecond)
 }
 
-func (e *IBusBambooEngine) SendBackspaceShiftLeftForwardingMode() {
+func (e *IBusLotusEngine) SendBackspaceShiftLeftForwardingMode() {
 	time.Sleep(30 * time.Millisecond)
 	log.Printf("Sendding %d Shift+Left via shiftLeftForwardingIM\n", fakeBackspaceCount)
 
@@ -75,7 +75,7 @@ func (e *IBusBambooEngine) SendBackspaceShiftLeftForwardingMode() {
 	time.Sleep(time.Duration(fakeBackspaceCount) * (30 + BACKSPACE_INTERVAL) * time.Millisecond)
 }
 
-func (e *IBusBambooEngine) SendBackspaceBackspaceForwardingMode() {
+func (e *IBusLotusEngine) SendBackspaceBackspaceForwardingMode() {
 	time.Sleep(30 * time.Millisecond)
 	log.Printf("Sendding %d backspace via backspaceForwardingIM\n", fakeBackspaceCount)
 
@@ -86,6 +86,6 @@ func (e *IBusBambooEngine) SendBackspaceBackspaceForwardingMode() {
 	time.Sleep(time.Duration(fakeBackspaceCount) * (30 + BACKSPACE_INTERVAL) * time.Millisecond)
 }
 
-func (e *IBusBambooEngine) resetFakeBackspace() {
+func (e *IBusLotusEngine) resetFakeBackspace() {
 	fakeBackspaceCount = 0
 }

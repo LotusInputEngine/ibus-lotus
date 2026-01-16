@@ -35,7 +35,7 @@ import (
 	"ibus-bamboo/ui"
 )
 
-type IBusBambooEngine struct {
+type IBusLotusEngine struct {
 	sync.Mutex
 	IEngine
 	preeditor              bamboo.IEngine
@@ -65,8 +65,8 @@ type IBusBambooEngine struct {
 	currentWordNearCursor  string
 }
 
-func NewIbusBambooEngine(name string, cfg *config.Config, base IEngine, preeditor bamboo.IEngine) *IBusBambooEngine {
-	return &IBusBambooEngine{
+func NewIbusLotusEngine(name string, cfg *config.Config, base IEngine, preeditor bamboo.IEngine) *IBusLotusEngine {
+	return &IBusLotusEngine{
 		engineName: name,
 		IEngine:    base,
 		preeditor:  preeditor,
@@ -93,7 +93,7 @@ Return:
 
 This function gets called whenever a key is pressed.
 */
-func (e *IBusBambooEngine) ProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) (bool, *dbus.Error) {
+func (e *IBusLotusEngine) ProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) (bool, *dbus.Error) {
 	if !isValidState(state) {
 		return false, nil
 	}
@@ -113,7 +113,7 @@ func (e *IBusBambooEngine) ProcessKeyEvent(keyVal uint32, keyCode uint32, state 
 	return e.preeditProcessKeyEvent(keyVal, keyCode, state)
 }
 
-func (e *IBusBambooEngine) FocusIn() *dbus.Error {
+func (e *IBusLotusEngine) FocusIn() *dbus.Error {
 	log.Print("FocusIn.")
 	var latestWm = e.getLatestWmClass()
 	e.checkWmClass(latestWm)
@@ -133,12 +133,12 @@ func (e *IBusBambooEngine) FocusIn() *dbus.Error {
 	return nil
 }
 
-func (e *IBusBambooEngine) FocusOut() *dbus.Error {
+func (e *IBusLotusEngine) FocusOut() *dbus.Error {
 	log.Print("FocusOut.")
 	return nil
 }
 
-func (e *IBusBambooEngine) Reset() *dbus.Error {
+func (e *IBusLotusEngine) Reset() *dbus.Error {
 	fmt.Print("Reset.\n")
 	if e.checkInputMode(config.PreeditIM) {
 		e.preeditor.Reset()
@@ -146,19 +146,19 @@ func (e *IBusBambooEngine) Reset() *dbus.Error {
 	return nil
 }
 
-func (e *IBusBambooEngine) Enable() *dbus.Error {
+func (e *IBusLotusEngine) Enable() *dbus.Error {
 	fmt.Print("Enable.")
 	e.RequireSurroundingText()
 	return nil
 }
 
-func (e *IBusBambooEngine) Disable() *dbus.Error {
+func (e *IBusLotusEngine) Disable() *dbus.Error {
 	fmt.Print("Disable.")
 	return nil
 }
 
 // @method(in_signature="vuu")
-func (e *IBusBambooEngine) SetSurroundingText(text dbus.Variant, cursorPos uint32, anchorPos uint32) *dbus.Error {
+func (e *IBusLotusEngine) SetSurroundingText(text dbus.Variant, cursorPos uint32, anchorPos uint32) *dbus.Error {
 	var str = reflect.ValueOf(reflect.ValueOf(text.Value()).Index(2).Interface()).String()
 	e.currentWordNearCursor = getLastWordFromSentence(str)
 	fmt.Println("Current word: ", e.currentWordNearCursor)
@@ -194,7 +194,7 @@ func (e *IBusBambooEngine) SetSurroundingText(text dbus.Variant, cursorPos uint3
 	return nil
 }
 
-func (e *IBusBambooEngine) PageUp() *dbus.Error {
+func (e *IBusLotusEngine) PageUp() *dbus.Error {
 	if e.isEmojiLTOpened && e.emojiLookupTable.PageUp() {
 		e.updateEmojiLookupTable()
 	}
@@ -204,7 +204,7 @@ func (e *IBusBambooEngine) PageUp() *dbus.Error {
 	return nil
 }
 
-func (e *IBusBambooEngine) PageDown() *dbus.Error {
+func (e *IBusLotusEngine) PageDown() *dbus.Error {
 	if e.isEmojiLTOpened && e.emojiLookupTable.PageDown() {
 		e.updateEmojiLookupTable()
 	}
@@ -214,7 +214,7 @@ func (e *IBusBambooEngine) PageDown() *dbus.Error {
 	return nil
 }
 
-func (e *IBusBambooEngine) CursorUp() *dbus.Error {
+func (e *IBusLotusEngine) CursorUp() *dbus.Error {
 	if e.isEmojiLTOpened && e.emojiLookupTable.CursorUp() {
 		e.updateEmojiLookupTable()
 	}
@@ -224,7 +224,7 @@ func (e *IBusBambooEngine) CursorUp() *dbus.Error {
 	return nil
 }
 
-func (e *IBusBambooEngine) CursorDown() *dbus.Error {
+func (e *IBusLotusEngine) CursorDown() *dbus.Error {
 	if e.isEmojiLTOpened && e.emojiLookupTable.CursorDown() {
 		e.updateEmojiLookupTable()
 	}
@@ -234,7 +234,7 @@ func (e *IBusBambooEngine) CursorDown() *dbus.Error {
 	return nil
 }
 
-func (e *IBusBambooEngine) CandidateClicked(index uint32, button uint32, state uint32) *dbus.Error {
+func (e *IBusLotusEngine) CandidateClicked(index uint32, button uint32, state uint32) *dbus.Error {
 	if e.isEmojiLTOpened && e.updateCursorPosInEmojiTable(index) {
 		e.commitEmojiCandidate()
 		e.closeEmojiCandidates()
@@ -246,21 +246,21 @@ func (e *IBusBambooEngine) CandidateClicked(index uint32, button uint32, state u
 	return nil
 }
 
-func (e *IBusBambooEngine) SetCapabilities(cap uint32) *dbus.Error {
+func (e *IBusLotusEngine) SetCapabilities(cap uint32) *dbus.Error {
 	e.capabilities = cap
 	return nil
 }
 
-func (e *IBusBambooEngine) SetCursorLocation(x int32, y int32, w int32, h int32) *dbus.Error {
+func (e *IBusLotusEngine) SetCursorLocation(x int32, y int32, w int32, h int32) *dbus.Error {
 	return nil
 }
 
-func (e *IBusBambooEngine) SetContentType(purpose uint32, hints uint32) *dbus.Error {
+func (e *IBusLotusEngine) SetContentType(purpose uint32, hints uint32) *dbus.Error {
 	return nil
 }
 
 // @method(in_signature="su")
-func (e *IBusBambooEngine) PropertyActivate(propName string, propState uint32) *dbus.Error {
+func (e *IBusLotusEngine) PropertyActivate(propName string, propState uint32) *dbus.Error {
 	if propName == PropKeyAbout {
 		exec.Command("xdg-open", HomePage).Start()
 		return nil

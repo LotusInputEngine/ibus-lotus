@@ -29,7 +29,7 @@ import (
 	ibus "github.com/LotusInputEngine/goibus"
 )
 
-func (e *IBusBambooEngine) hexadecimalProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) bool {
+func (e *IBusLotusEngine) hexadecimalProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) bool {
 	var rawKeyLen = e.getRawKeyLen()
 	if keyVal >= 0xffb0 && keyVal <= 0xffb9 {
 		keyVal = keyVal - 0xffb0 + 0x0030
@@ -80,7 +80,7 @@ func (e *IBusBambooEngine) hexadecimalProcessKeyEvent(keyVal uint32, keyCode uin
 	return true
 }
 
-func (e *IBusBambooEngine) setupHexadecimalProcessKeyEvent() {
+func (e *IBusLotusEngine) setupHexadecimalProcessKeyEvent() {
 	var keyVal = uint32(117)
 	var state = uint32(0)
 	var keyRune = rune(keyVal)
@@ -93,13 +93,13 @@ func (e *IBusBambooEngine) setupHexadecimalProcessKeyEvent() {
 	e.updateHexadecimal(e.getProcessedString(mode))
 }
 
-func (e *IBusBambooEngine) closeHexadecimalInput() {
+func (e *IBusLotusEngine) closeHexadecimalInput() {
 	e.HidePreeditText()
 	e.preeditor.Reset()
 	e.isInHexadecimal = false
 }
 
-func (e *IBusBambooEngine) updateHexadecimal(processedStr string) {
+func (e *IBusLotusEngine) updateHexadecimal(processedStr string) {
 	var encodedStr = e.encodeText(processedStr)
 	var preeditLen = uint32(len([]rune(encodedStr)))
 	if preeditLen == 0 {

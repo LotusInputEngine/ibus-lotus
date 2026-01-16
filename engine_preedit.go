@@ -30,7 +30,7 @@ import (
 	"github.com/godbus/dbus/v5"
 )
 
-func (e *IBusBambooEngine) preeditProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) (bool, *dbus.Error) {
+func (e *IBusLotusEngine) preeditProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) (bool, *dbus.Error) {
 	var rawKeyLen = e.getRawKeyLen()
 	var oldText = e.getPreeditString()
 	defer e.updateLastKeyWithShift(keyVal, state)
@@ -68,7 +68,7 @@ func (e *IBusBambooEngine) preeditProcessKeyEvent(keyVal uint32, keyCode uint32,
 	return isPrintableKey, nil
 }
 
-func (e *IBusBambooEngine) expandMacro(str string) string {
+func (e *IBusLotusEngine) expandMacro(str string) string {
 	var macroText = e.macroTable.GetText(str)
 	if e.config.IBflags&config.IBautoCapitalizeMacro != 0 {
 		switch determineMacroCase(str) {
@@ -81,7 +81,7 @@ func (e *IBusBambooEngine) expandMacro(str string) string {
 	return macroText
 }
 
-func (e *IBusBambooEngine) updatePreedit(processedStr string) {
+func (e *IBusLotusEngine) updatePreedit(processedStr string) {
 	var encodedStr = e.encodeText(processedStr)
 	var preeditLen = uint32(len([]rune(encodedStr)))
 	if preeditLen == 0 {
@@ -100,14 +100,14 @@ func (e *IBusBambooEngine) updatePreedit(processedStr string) {
 	e.UpdatePreeditTextWithMode(ibusText, preeditLen, true, ibus.IBUS_ENGINE_PREEDIT_COMMIT)
 }
 
-func (e *IBusBambooEngine) getBambooInputMode() bamboo.Mode {
+func (e *IBusLotusEngine) getBambooInputMode() bamboo.Mode {
 	if e.shouldFallbackToEnglish(false) {
 		return bamboo.EnglishMode
 	}
 	return bamboo.VietnameseMode
 }
 
-func (e *IBusBambooEngine) shouldFallbackToEnglish(checkVnRune bool) bool {
+func (e *IBusLotusEngine) shouldFallbackToEnglish(checkVnRune bool) bool {
 	if e.config.IBflags&config.IBautoNonVnRestore == 0 {
 		return false
 	}
@@ -130,7 +130,7 @@ func (e *IBusBambooEngine) shouldFallbackToEnglish(checkVnRune bool) bool {
 	return !e.preeditor.IsValid(false)
 }
 
-func (e *IBusBambooEngine) mustFallbackToEnglish() bool {
+func (e *IBusLotusEngine) mustFallbackToEnglish() bool {
 	if e.config.IBflags&config.IBautoNonVnRestore == 0 {
 		return false
 	}
@@ -149,22 +149,22 @@ func (e *IBusBambooEngine) mustFallbackToEnglish() bool {
 	return !e.preeditor.IsValid(true)
 }
 
-func (e *IBusBambooEngine) getComposedString(oldText string) string {
+func (e *IBusLotusEngine) getComposedString(oldText string) string {
 	if bamboo.HasAnyVietnameseRune(oldText) && e.mustFallbackToEnglish() {
 		return e.getProcessedString(bamboo.EnglishMode)
 	}
 	return oldText
 }
 
-func (e *IBusBambooEngine) encodeText(text string) string {
+func (e *IBusLotusEngine) encodeText(text string) string {
 	return bamboo.Encode(e.config.OutputCharset, text)
 }
 
-func (e *IBusBambooEngine) getProcessedString(mode bamboo.Mode) string {
+func (e *IBusLotusEngine) getProcessedString(mode bamboo.Mode) string {
 	return e.preeditor.GetProcessedString(mode)
 }
 
-func (e *IBusBambooEngine) getPreeditString() string {
+func (e *IBusLotusEngine) getPreeditString() string {
 	if e.config.IBflags&config.IBmacroEnabled != 0 {
 		return e.getProcessedString(bamboo.PunctuationMode)
 	}
@@ -174,13 +174,13 @@ func (e *IBusBambooEngine) getPreeditString() string {
 	return e.getProcessedString(bamboo.VietnameseMode)
 }
 
-func (e *IBusBambooEngine) resetPreedit() {
+func (e *IBusLotusEngine) resetPreedit() {
 	e.HidePreeditText()
 	e.HideAuxiliaryText()
 	e.preeditor.Reset()
 }
 
-func (e *IBusBambooEngine) commitPreeditAndReset(s string) {
+func (e *IBusLotusEngine) commitPreeditAndReset(s string) {
 	e.commitText(s)
 	e.HidePreeditText()
 	e.HideAuxiliaryText()
@@ -188,7 +188,7 @@ func (e *IBusBambooEngine) commitPreeditAndReset(s string) {
 	e.preeditor.Reset()
 }
 
-func (e *IBusBambooEngine) commitText(str string) {
+func (e *IBusLotusEngine) commitText(str string) {
 	if str == "" {
 		return
 	}
@@ -198,10 +198,10 @@ func (e *IBusBambooEngine) commitText(str string) {
 	e.CommitText(ibus.NewText(e.encodeText(str)))
 }
 
-func (e *IBusBambooEngine) getVnSeq() string {
+func (e *IBusLotusEngine) getVnSeq() string {
 	return e.preeditor.GetProcessedString(bamboo.VietnameseMode)
 }
 
-func (e *IBusBambooEngine) hasMacroKey(key string) bool {
+func (e *IBusLotusEngine) hasMacroKey(key string) bool {
 	return e.macroTable.GetText(key) != ""
 }

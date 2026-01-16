@@ -28,7 +28,7 @@ import (
 
 const EmojiMaxPageSize = 9
 
-func (e *IBusBambooEngine) openEmojiList() {
+func (e *IBusLotusEngine) openEmojiList() {
 	e.emoji.ProcessKey(':')
 	e.UpdatePreeditText(ibus.NewText(":"), 1, true)
 	e.UpdateAuxiliaryText(ibus.NewText(":"), true)
@@ -42,7 +42,7 @@ func (e *IBusBambooEngine) openEmojiList() {
 	e.updateEmojiLookupTable()
 }
 
-func (e *IBusBambooEngine) emojiProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) bool {
+func (e *IBusLotusEngine) emojiProcessKeyEvent(keyVal uint32, keyCode uint32, state uint32) bool {
 	var raw = e.emoji.GetRawString()
 	var rawTextLen = len([]rune(raw))
 	var keyRune = rune(keyVal)
@@ -145,7 +145,7 @@ func (e *IBusBambooEngine) emojiProcessKeyEvent(keyVal uint32, keyCode uint32, s
 	return true
 }
 
-func (e *IBusBambooEngine) updateCursorPosInEmojiTable(idx uint32) bool {
+func (e *IBusLotusEngine) updateCursorPosInEmojiTable(idx uint32) bool {
 	pageSize := e.emojiLookupTable.PageSize
 	if idx > pageSize {
 		return false
@@ -159,7 +159,7 @@ func (e *IBusBambooEngine) updateCursorPosInEmojiTable(idx uint32) bool {
 	return true
 }
 
-func (e *IBusBambooEngine) updateEmojiLookupTable() {
+func (e *IBusLotusEngine) updateEmojiLookupTable() {
 	if len(e.emoji.keys) == 0 {
 		return
 	}
@@ -172,14 +172,14 @@ func (e *IBusBambooEngine) updateEmojiLookupTable() {
 	}
 }
 
-func (e *IBusBambooEngine) commitEmojiCandidate() {
+func (e *IBusLotusEngine) commitEmojiCandidate() {
 	var cps = e.emoji.Query()
 	if pos := e.emojiLookupTable.CursorPos; pos < uint32(len(cps)) {
 		e.CommitText(ibus.NewText(cps[pos]))
 	}
 }
 
-func (e *IBusBambooEngine) refreshEmojiCandidate() {
+func (e *IBusLotusEngine) refreshEmojiCandidate() {
 	var raw = e.emoji.GetRawString()
 	var rawTextLen = len([]rune(raw))
 	e.UpdatePreeditTextWithMode(ibus.NewText(raw), uint32(rawTextLen), true, ibus.IBUS_ENGINE_PREEDIT_COMMIT)
@@ -187,7 +187,7 @@ func (e *IBusBambooEngine) refreshEmojiCandidate() {
 	e.updateEmojiLookupTable()
 }
 
-func (e *IBusBambooEngine) closeEmojiCandidates() {
+func (e *IBusLotusEngine) closeEmojiCandidates() {
 	e.emojiLookupTable = nil
 	e.emoji.Reset()
 	e.UpdateLookupTable(ibus.NewLookupTable(), true) // workaround for issue #18
