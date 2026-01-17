@@ -1,10 +1,17 @@
 IBus Lotus - Bộ gõ tiếng Việt cho Linux
 ===================================
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://opensource.org/licenses/GPL-3.0)
-[![GitHub release](https://img.shields.io/github/release/LotusInputEngine/ibus-lotus.svg)](https://github.com/LotusInputEngine/ibus-lotus/releases/latest)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/LotusInputEngine/ibus-lotus/)
 
-Ibus Lotus là bản fork của [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo/). Vì một số lý do mà ibus-bamboo không thể tiếp tục phát triển nữa, bộ gõ này ra đời với mục đích kế thừa và tiếp tục. Quản lý bởi [hien-ngo29](https://github.com/hien-ngo29).
+~Ibus Lotus là bản fork của [ibus-bamboo](https://github.com/BambooEngine/ibus-bamboo/). Vì một số lý do mà ibus-bamboo không thể tiếp tục phát triển nữa, bộ gõ này ra đời với mục đích kế thừa và tiếp tục. Quản lý bởi [hien-ngo29](https://github.com/hien-ngo29).~
+
+**ibus-lotus hiện đã ngừng hoạt động vì lý do đã có các bộ gõ Tiếng Việt khác chỉnh chu và ít vấn đề hơn như fcitx5-unikey. Việc phát triển tiếp thêm bộ gõ này gần như là không cần thiết. Để biết thêm vui lòng qua https://github.com/BambooEngine/ibus-bamboo/issues/590#issuecomment-3762683651. Rất cám ơn các bạn thời gian qua.**
+
+Những thay đổi đáng chú ý đã được thêm vào ibus-lotus so với ibus-bamboo:
+- Fix vấn đề lặp lại từ cuối trong một số trang web.
+- Fix vấn đề không nhấn được `super + space` để chuyển đổi bộ gõ ibus trên Wayland.
+- Fix vấn đề nhấp chuột bị hiện bảng Remote Interaction trên GNOME.
+- Fix vấn đề nhấp chuột bị nhảy từ đang gõ từ ô nhập liệu khác trên Wayland, đồng thời option `Bắt sự kiện chuột` cũng đã được loại bỏ.
+- Fix vấn đề không mở được bảng tùy chọn chế độ gõ trên Wayland cho GNOME và KDE Plasma.
 
 ## Sơ lược tính năng
 * Hỗ trợ tất cả các bảng mã phổ biến:
@@ -59,10 +66,6 @@ Hãy cài những thứ này để tránh việc không mở được bảng ch�
 **KDE Plasma**: cài đặt `kdotool` từ package manager của distro.
 
 **Nếu có thắc mắc hay trục trặc về việc cài đặt ibus-lotus hãy thoải mái [mở issue](https://github.com/LotusInputEngine/ibus-lotus/issues/new) trên repo này**
-
-## TODO
-> Một số thứ mà mình chưa thể làm được vì trục trặc vấn đề. Các bạn có thể giúp mình bằng một PR có ích :)
-- [ ] Đổi tên core của dự án từ Bamboo thành Lotus (Riêng thư viện bamboo-core giữ lại đúng tên)
 
 ## Xin cám ơn các contributor của IBus Bamboo <3
 
